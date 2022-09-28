@@ -63,6 +63,23 @@
           "build/HotChocolate.AspNetCore.targets": {}
         }
       },
+      "HotChocolate.Data/12.14.0": {
+        "type": "package",
+        "dependencies": {
+          "HotChocolate.Execution": "12.14.0",
+          "HotChocolate.Types.CursorPagination": "12.14.0"
+        },
+        "compile": {
+          "lib/net6.0/HotChocolate.Data.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/HotChocolate.Data.dll": {}
+        },
+        "build": {
+          "build/HotChocolate.Data.props": {},
+          "build/HotChocolate.Data.targets": {}
+        }
+      },
       "HotChocolate.Execution/12.14.0": {
         "type": "package",
         "dependencies": {
@@ -513,6 +530,31 @@
         "lib/net6.0/HotChocolate.AspNetCore.xml",
         "lib/netcoreapp3.1/HotChocolate.AspNetCore.dll",
         "lib/netcoreapp3.1/HotChocolate.AspNetCore.xml",
+        "strawberryshake-signet.png"
+      ]
+    },
+    "HotChocolate.Data/12.14.0": {
+      "sha512": "rcEnPlNEDMrF0eShZhKT0radhaQRFBgeOlc4HJMN0+iDB1ffe0JrVSQzmbljdXTDaceWIenojp8X1+CiemwuOA==",
+      "type": "package",
+      "path": "hotchocolate.data/12.14.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "build/HotChocolate.Data.props",
+        "build/HotChocolate.Data.targets",
+        "greendonut-signet.png",
+        "hotchocolate-signet.png",
+        "hotchocolate.data.12.14.0.nupkg.sha512",
+        "hotchocolate.data.nuspec",
+        "lib/net5.0/HotChocolate.Data.dll",
+        "lib/net5.0/HotChocolate.Data.xml",
+        "lib/net6.0/HotChocolate.Data.dll",
+        "lib/net6.0/HotChocolate.Data.xml",
+        "lib/netcoreapp3.1/HotChocolate.Data.dll",
+        "lib/netcoreapp3.1/HotChocolate.Data.xml",
+        "lib/netstandard2.0/HotChocolate.Data.dll",
+        "lib/netstandard2.0/HotChocolate.Data.xml",
         "strawberryshake-signet.png"
       ]
     },
@@ -1280,7 +1322,8 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "HotChocolate.AspNetCore >= 12.14.0"
+      "HotChocolate.AspNetCore >= 12.14.0",
+      "HotChocolate.Data >= 12.14.0"
     ]
   },
   "packageFolders": {
@@ -1289,11 +1332,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\yan.esteves\\Documents\\SENAI\\Audaces\\graphql\\Api\\Api.csproj",
+      "projectUniqueName": "c:\\Users\\yan.esteves\\Documents\\SENAI\\Audaces\\graphql\\Api\\Api.csproj",
       "projectName": "Api",
-      "projectPath": "C:\\Users\\yan.esteves\\Documents\\SENAI\\Audaces\\graphql\\Api\\Api.csproj",
+      "projectPath": "c:\\Users\\yan.esteves\\Documents\\SENAI\\Audaces\\graphql\\Api\\Api.csproj",
       "packagesPath": "C:\\Users\\yan.esteves\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\yan.esteves\\Documents\\SENAI\\Audaces\\graphql\\Api\\obj\\",
+      "outputPath": "c:\\Users\\yan.esteves\\Documents\\SENAI\\Audaces\\graphql\\Api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\yan.esteves\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -1323,6 +1366,10 @@
         "targetAlias": "net6.0",
         "dependencies": {
           "HotChocolate.AspNetCore": {
+            "target": "Package",
+            "version": "[12.14.0, )"
+          },
+          "HotChocolate.Data": {
             "target": "Package",
             "version": "[12.14.0, )"
           }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "wxY4nfHpqjE0Ne07gTo64wtJO/8lqSc+Z7ZslQlhlMqyCU+p6WO71Dba1KsLRsduj5JUJdBXoTY6xiJL1E/JdQ==",
+  "dgSpecHash": "Vt3t0TFUxvPJI9Vv6yCLtylp1aqSsJVNNMd8yEpq47dQmxjsQkzB7pEbof9i4/3XuKz7N5kjMnqou3KdmXvBCQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\yan.esteves\\Documents\\SENAI\\Audaces\\graphql\\Api\\Api.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\yan.esteves\\.nuget\\packages\\hotchocolate\\12.14.0\\hotchocolate.12.14.0.nupkg.sha512",
     "C:\\Users\\yan.esteves\\.nuget\\packages\\hotchocolate.abstractions\\12.14.0\\hotchocolate.abstractions.12.14.0.nupkg.sha512",
     "C:\\Users\\yan.esteves\\.nuget\\packages\\hotchocolate.aspnetcore\\12.14.0\\hotchocolate.aspnetcore.12.14.0.nupkg.sha512",
+    "C:\\Users\\yan.esteves\\.nuget\\packages\\hotchocolate.data\\12.14.0\\hotchocolate.data.12.14.0.nupkg.sha512",
     "C:\\Users\\yan.esteves\\.nuget\\packages\\hotchocolate.execution\\12.14.0\\hotchocolate.execution.12.14.0.nupkg.sha512",
     "C:\\Users\\yan.esteves\\.nuget\\packages\\hotchocolate.fetching\\12.14.0\\hotchocolate.fetching.12.14.0.nupkg.sha512",
     "C:\\Users\\yan.esteves\\.nuget\\packages\\hotchocolate.language\\12.14.0\\hotchocolate.language.12.14.0.nupkg.sha512",

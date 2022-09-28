@@ -13,6 +13,7 @@
     <SourceRoot Include="C:\Users\yan.esteves\.nuget\packages\" />
   </ItemGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)hotchocolate.data\12.14.0\build\HotChocolate.Data.props" Condition="Exists('$(NuGetPackageRoot)hotchocolate.data\12.14.0\build\HotChocolate.Data.props')" />
     <Import Project="$(NuGetPackageRoot)hotchocolate.aspnetcore\12.14.0\build\HotChocolate.AspNetCore.props" Condition="Exists('$(NuGetPackageRoot)hotchocolate.aspnetcore\12.14.0\build\HotChocolate.AspNetCore.props')" />
   </ImportGroup>
 </Project>

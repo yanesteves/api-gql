@@ -43,6 +43,10 @@
             "HotChocolate.AspNetCore": {
               "target": "Package",
               "version": "[12.14.0, )"
+            },
+            "HotChocolate.Data": {
+              "target": "Package",
+              "version": "[12.14.0, )"
             }
           },
           "imports": [
