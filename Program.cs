@@ -14,8 +14,13 @@ builder.Services
     .AddQueryType()
         .AddTypeExtension<VeiculosQueries>()
     
+    .AddMutationType()
+        .AddTypeExtension<VeiculosMutation>()
+        .AddTypeExtension<CompradoresMutation>()
+    
     .AddType<Veiculo>()
     .AddType<IVeiculo>()
+    .AddType<Comprador>()
 
     .AddApolloTracing();
 

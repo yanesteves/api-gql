@@ -1,3 +1,4 @@
+using System.Linq;
 using API.Veiculos;
 
 namespace API.Repositories 
@@ -15,6 +16,14 @@ namespace API.Repositories
         {
             IEnumerable<IVeiculo> filteredVeiculos = _veiculos.Values.Where(t => t.Nome.Contains(""));
             return filteredVeiculos;
+        }
+
+        
+        public void AddVeiculo(Veiculo veiculo)
+        {
+            List<IVeiculo> veiculos = CreateVeiculos().ToList();
+            veiculos.Add(veiculo);
+            _veiculos = veiculos.ToDictionary(t => t.Id);
         }
 
         private static IEnumerable<IVeiculo> CreateVeiculos() 

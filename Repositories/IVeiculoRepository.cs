@@ -6,5 +6,7 @@ namespace API.Repositories
     {
         // IVeiculo GetVeiculo(int id);
         IEnumerable<IVeiculo> GetVeiculos();
+
+        void AddVeiculo(Veiculo veiculo);
     }
 }
