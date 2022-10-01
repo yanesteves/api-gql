@@ -14,10 +14,13 @@ namespace API.Veiculos
         {
             var veiculo = new Veiculo(input.Id, input.Nome, input.Dono, input.Cor, input.Preco);
             repository.AddVeiculo(veiculo);
+            
             // envio um evento para veiculos e falo a nova adição.            
             await eventSender.SendAsync(nameof(VeiculosSubscription.VeiculoAdicionado), veiculo).ConfigureAwait(false);
+            
             return input;
         }
+
         // public Veiculo CreateVeiculo(
         //     Veiculo input,
         //     [Service] IVeiculoRepository repository)

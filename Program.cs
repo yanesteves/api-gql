@@ -5,28 +5,31 @@ using Microsoft.Extensions.Hosting;
 using API.Repositories;
 using API.Veiculos;
 using API.Mensagens;
-
+using API.Ofertas;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
-    
     .AddSingleton<IVeiculoRepository, VeiculoRepository>()
-
+    .AddSingleton<IOfertaRepository, OfertaRepository>()
     .AddGraphQLServer()
 
     // Queries
     .AddQueryType()
         .AddTypeExtension<VeiculosQueries>()
+        .AddTypeExtension<OfertasQueries>()
 
     // Mutations
     .AddMutationType()
         .AddTypeExtension<VeiculosMutation>()
+        .AddTypeExtension<OfertasMutation>()
 
     // Subscriptions
     .AddSubscriptionType()
         .AddTypeExtension<VeiculosSubscription>()
+        .AddTypeExtension<OfertasSubscription>()
 
     .AddType<Veiculo>()
+    .AddType<Oferta>()
     .AddType<Comprador>()
     .AddType<Friend>()    
 
