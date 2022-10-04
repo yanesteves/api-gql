@@ -8,5 +8,11 @@ namespace API.Veiculos
     {
         [Subscribe]
         public Veiculo VeiculoAdicionado([EventMessage]Veiculo message) => message;
+
+        [Subscribe]
+        public Veiculo TipoVeiculoAdicionado([Topic]TipoVeiculo tipo, [EventMessage]Veiculo message) => message;
+
+        [Subscribe]
+        public Veiculo NomeVeiculoAdicionado([Topic]string nome, [EventMessage]Veiculo message) => message;
     }
 }

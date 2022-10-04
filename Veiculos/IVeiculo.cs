@@ -8,5 +8,6 @@ namespace API.Veiculos
         string Dono {get;}
         string Cor {get;}
         float Preco {get;}
+        TipoVeiculo Tipo{get;}
     }
 }
