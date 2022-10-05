@@ -6,5 +6,6 @@ namespace API.Repositories
     {
         Oferta AddOferta(Oferta oferta);
         IEnumerable<IOferta> GetOfertas();
+        IEnumerable<IOferta> GetOfertasByUser(string user);
     }
 }

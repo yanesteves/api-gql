@@ -12,11 +12,13 @@ namespace API.Veiculos
             Veiculo input, [Service] IVeiculoRepository repository,
             [Service]ITopicEventSender eventSender)
         {
-            var veiculo = new Veiculo(input.Id, input.Nome, input.Dono, input.Cor, input.Preco);
+            var veiculo = new Veiculo(input.Id, input.Nome, input.Dono, input.Cor, input.Preco, input.Tipo);
             repository.AddVeiculo(veiculo);
             
-            // envio um evento para veiculos e falo a nova adição.            
-            await eventSender.SendAsync(nameof(VeiculosSubscription.VeiculoAdicionado), veiculo).ConfigureAwait(false);
+            // Topico , Mensagem
+            await eventSender.SendAsync(veiculo.Tipo, veiculo);
+
+            // await eventSender.SendAsync(nameof(VeiculosSubscription.VeiculoAdicionado), veiculo).ConfigureAwait(false);
             
             return input;
         }

@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using API.Repositories;
 using API.Veiculos;
-using API.Mensagens;
+// using API.Mensagens;
 using API.Ofertas;
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,7 +31,7 @@ builder.Services
     .AddType<Veiculo>()
     .AddType<Oferta>()
     .AddType<Comprador>()
-    .AddType<Friend>()    
+    // .AddType<Friend>()    
 
     .AddInMemorySubscriptions()
     .AddApolloTracing();
