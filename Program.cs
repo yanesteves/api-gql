@@ -1,54 +1,26 @@
-using Microsoft.AspNetCore.Builder;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using API.Repositories;
-using API.Veiculos;
-// using API.Mensagens;
-using API.Ofertas;
-var builder = WebApplication.CreateBuilder(args);
+using Microsoft.Extensions.Logging;
 
-builder.Services
-    .AddSingleton<IVeiculoRepository, VeiculoRepository>()
-    .AddSingleton<IOfertaRepository, OfertaRepository>()
-    .AddGraphQLServer()
-
-    // Queries
-    .AddQueryType()
-        .AddTypeExtension<VeiculosQueries>()
-        .AddTypeExtension<OfertasQueries>()
-
-    // Mutations
-    .AddMutationType()
-        .AddTypeExtension<VeiculosMutation>()
-        .AddTypeExtension<OfertasMutation>()
-
-    // Subscriptions
-    .AddSubscriptionType()
-        .AddTypeExtension<VeiculosSubscription>()
-        .AddTypeExtension<OfertasSubscription>()
-
-    .AddType<Veiculo>()
-    .AddType<Oferta>()
-    .AddType<Comprador>()
-    // .AddType<Friend>()    
-
-    .AddInMemorySubscriptions()
-    .AddApolloTracing();
-
-builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
+namespace API
 {
-    builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
-}));
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            CreateHostBuilder(args).Build().Run();
+        }
 
-var app = builder.Build();
-app.UseCors("corsapp");
-
-// app.MapGraphQL();
-
-// Adicionando o "suporte" ao WebSockets em graphql
-app.UseWebSockets()
-    .UseRouting()
-    .UseEndpoints(endpoint => endpoint.MapGraphQL());
-
-app.Run();
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
+    }
+}
