@@ -3,8 +3,10 @@ using HotChocolate.Data;
 using HotChocolate.Types;
 using API.Repositories;
 using HotChocolate.Subscriptions;
+using HotChocolate.AspNetCore.Authorization;
+
 namespace API.Veiculos
-{
+{    
     [ExtendObjectType(OperationTypeNames.Mutation)]
     public class VeiculosMutation
     {

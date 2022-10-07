@@ -10,6 +10,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace API.Auth
 {
@@ -22,27 +23,10 @@ namespace API.Auth
 
     [ExtendObjectType(OperationTypeNames.Mutation)]
     public class AuthMutation
-    {
-        private List<User> Users = new List<User>
+    {       
+        public string UserLogin([Service] IOptions<TokenSettings> tokenSettings, [Service] IUsuarioRepository repository, LoginInput login)
         {
-            new User{
-                Id = 1,
-                Nome = "Yan Esteves",
-                Email = "yan.m.esteves@gmail.com",
-                Password="123456"
-            },
-            new User{
-                Id = 2,
-                Nome = "Marco",
-                Email = "marco@gmail.com",
-                Password = "abcdef"
-            }
-        };
-
-        public string UserLogin([Service] IOptions<TokenSettings> tokenSettings, LoginInput login)
-        {
-            var currentUser = Users.Where(_ => _.Email.ToLower() == login.Email.ToLower() &&
-                        _.Password == login.Password).FirstOrDefault();
+            var currentUser = repository.AuthUser(login);
             if (currentUser != null)
             {
                 var securitykey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenSettings.Value.Key));
@@ -52,13 +36,15 @@ namespace API.Auth
                     issuer: tokenSettings.Value.Issuer,
                     audience: tokenSettings.Value.Audience,
                     expires: DateTime.Now.AddMinutes(20),
-                    signingCredentials: credentials
+                    signingCredentials: credentials                    
+                    // claims: currentUser.Claims
                 );
 
-                return new JwtSecurityTokenHandler().WriteToken(jwtToken);
+                string token = new JwtSecurityTokenHandler().WriteToken(jwtToken);
+                return token;
 
             }
-            return "";
+            return string.Empty;
         }
     }
 }

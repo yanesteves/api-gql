@@ -34,16 +34,17 @@ namespace API
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {    
+        {
             // GraphQL Server
+            services.AddControllers();
             services.AddGraphQLServer()
             // Queries
-            .AddQueryType<QueryObjectType>()
+            // .AddQueryType<QueryObjectType>()
             .AddAuthorization()
-                // .AddTypeExtension<VeiculosQueries>()
-                // .AddTypeExtension<QueryObjectType>()
-                // .AddTypeExtension<OfertasQueries>()
-                // .AddTypeExtension<TestQuery>()
+            .AddTypeExtension<VeiculosQueries>()
+            .AddTypeExtension<QueryObjectType>()
+            .AddTypeExtension<OfertasQueries>()
+            // .AddTypeExtension<TestQuery>()
 
             // Mutations
             .AddMutationType()
@@ -61,7 +62,11 @@ namespace API
             .AddType<Comprador>()
             .AddInMemorySubscriptions()
             .AddApolloTracing();
-            
+
+            // services.AddGraphQLServer()
+            // .AddQueryType<QueryObjectType>()
+            // .AddAuthorization();
+
             // Carregando o repository
             services
                 .AddSingleton<IVeiculoRepository, VeiculoRepository>()
@@ -74,7 +79,7 @@ namespace API
             }));
 
             services.Configure<TokenSettings>(Configuration.GetSection("TokenSettings"));
-
+            // services.AddAuthorization();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
             {
@@ -105,9 +110,9 @@ namespace API
             // configuração da autenticação/autorização
             app.UseAuthentication();
             app.UseAuthorization();
-            
+
             // configuração do graphql endpoint e websockets
-            app.UseWebSockets()      
+            app.UseWebSockets()
             .UseEndpoints(endpoints =>
             {
                 endpoints.MapGraphQL();
