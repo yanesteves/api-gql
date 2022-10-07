@@ -79,7 +79,7 @@ namespace API
             }));
 
             services.Configure<TokenSettings>(Configuration.GetSection("TokenSettings"));
-            // services.AddAuthorization();
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
             {
