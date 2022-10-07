@@ -1,6 +1,6 @@
 using API.Repositories;
-using System.Security.Claims;
 using HotChocolate.AspNetCore.Authorization;
+// using System.Security.Claims;
 
 namespace API.Veiculos 
 {    
@@ -16,8 +16,9 @@ namespace API.Veiculos
             return veiculo;
         }
         
+        [Authorize]
         [GraphQLName("get_dono")]        
-        public Dono GetDono() {            
+        public Dono GetDono() {                        
             var dono = new Dono("Yan");
             return dono;
         }
@@ -26,7 +27,7 @@ namespace API.Veiculos
         public string TestProtect() => "Sucesso";
         
         [Authorize] // Será cobrada autenticação para visualizar essa query     
-        public string TestSuperProtect() => "Sucesso";
+        public string? TestSuperProtect([Service] IHttpContextAccessor contextAccessor) => contextAccessor.HttpContext?.User.ToString();
     }    
     public class Dono {
         public Dono(string nome) {

@@ -1,15 +1,21 @@
 using HotChocolate.AspNetCore.Authorization;
-
+// using System.Security.Claims;
 namespace API.Models
 {
      public class User
     {
         public int? Id { get; set; }
         public string? Nome { get; set; }
-        [Authorize] // estou informando ao hotchocolate que apenas usuários autorizados (com autenticação) poderão retornar este campo
+        
+        [Authorize]
         public string? Email { get; set; }
-        [Authorize] // estou informando ao hotchocolate que apenas usuários autorizados (com autenticação) poderão retornar este campo
+        
+        [Authorize] 
         public string? Password { get; set; }        
+        // [Authorize(Roles = new[] { "Administrator" })]
+        
+        // [Authorize]
+        // public Claim[]? Claims { get; set; }        
     }
 
 }

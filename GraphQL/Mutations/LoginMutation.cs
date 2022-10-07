@@ -10,7 +10,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
-using System.Security.Claims;
+// using System.Security.Claims;
 
 namespace API.Auth
 {
@@ -24,7 +24,9 @@ namespace API.Auth
     [ExtendObjectType(OperationTypeNames.Mutation)]
     public class AuthMutation
     {       
-        public string UserLogin([Service] IOptions<TokenSettings> tokenSettings, [Service] IUsuarioRepository repository, LoginInput login)
+        public string UserLogin([Service] IOptions<TokenSettings> tokenSettings, 
+        [Service] IUsuarioRepository repository, 
+        LoginInput login)
         {
             var currentUser = repository.AuthUser(login);
             if (currentUser != null)
@@ -34,10 +36,10 @@ namespace API.Auth
 
                 var jwtToken = new JwtSecurityToken(
                     issuer: tokenSettings.Value.Issuer,
-                    audience: tokenSettings.Value.Audience,
-                    expires: DateTime.Now.AddMinutes(20),
-                    signingCredentials: credentials                    
-                    // claims: currentUser.Claims
+                    audience: tokenSettings.Value.Audience,                    
+                    signingCredentials: credentials,
+                    expires: DateTime.Now.AddMinutes(20)
+                    // claims: ...
                 );
 
                 string token = new JwtSecurityTokenHandler().WriteToken(jwtToken);
