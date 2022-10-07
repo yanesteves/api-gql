@@ -18,7 +18,10 @@ namespace API.Repositories
             return filteredVeiculos;
         }
 
-        
+        public IVeiculo GetVeiculo(int id) {
+            var veiculo = _veiculos.Values.Single(t => t.Id == id);   
+            return veiculo;
+        }
         public void AddVeiculo(Veiculo veiculo)
         {
             List<IVeiculo> veiculos = CreateVeiculos().ToList();

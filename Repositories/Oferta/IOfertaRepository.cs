@@ -1,5 +1,4 @@
 using API.Ofertas;
-
 namespace API.Repositories
 {
     public interface IOfertaRepository 

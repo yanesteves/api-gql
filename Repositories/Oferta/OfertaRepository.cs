@@ -1,7 +1,5 @@
 using System.Linq;
 using API.Ofertas;
-using System.Linq;
-
 namespace API.Repositories 
 {
     public class OfertaRepository : IOfertaRepository

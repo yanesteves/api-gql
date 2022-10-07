@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\yan.esteves\\Documents\\SENAI\\Audaces\\graphql\\Api\\Api.csproj": {}
+    "C:\\Users\\yan.esteves\\Documents\\SENAI\\api-gql\\Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\yan.esteves\\Documents\\SENAI\\Audaces\\graphql\\Api\\Api.csproj": {
+    "C:\\Users\\yan.esteves\\Documents\\SENAI\\api-gql\\Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\yan.esteves\\Documents\\SENAI\\Audaces\\graphql\\Api\\Api.csproj",
+        "projectUniqueName": "C:\\Users\\yan.esteves\\Documents\\SENAI\\api-gql\\Api.csproj",
         "projectName": "Api",
-        "projectPath": "C:\\Users\\yan.esteves\\Documents\\SENAI\\Audaces\\graphql\\Api\\Api.csproj",
+        "projectPath": "C:\\Users\\yan.esteves\\Documents\\SENAI\\api-gql\\Api.csproj",
         "packagesPath": "C:\\Users\\yan.esteves\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\yan.esteves\\Documents\\SENAI\\Audaces\\graphql\\Api\\obj\\",
+        "outputPath": "C:\\Users\\yan.esteves\\Documents\\SENAI\\api-gql\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\yan.esteves\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -44,9 +44,29 @@
               "target": "Package",
               "version": "[12.14.0, )"
             },
+            "HotChocolate.AspNetCore.Authorization": {
+              "target": "Package",
+              "version": "[12.14.0, )"
+            },
             "HotChocolate.Data": {
               "target": "Package",
               "version": "[12.14.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.9, )"
+            },
+            "Microsoft.AspNetCore.Authentication.OpenIdConnect": {
+              "target": "Package",
+              "version": "[6.0.9, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.4.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.23.1, )"
             }
           },
           "imports": [
