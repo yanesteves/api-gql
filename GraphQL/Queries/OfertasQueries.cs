@@ -2,8 +2,8 @@ using HotChocolate;
 using HotChocolate.Data;
 using HotChocolate.Types;
 using API.Repositories;
-
-namespace API.Ofertas 
+using API.Ofertas;
+namespace API.GraphQL.Query
 {
     [ExtendObjectType(OperationTypeNames.Query)]
     public class OfertasQueries

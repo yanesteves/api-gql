@@ -4,14 +4,23 @@ using API.Auth;
 using API.Models;
 using API.Ofertas;
 using API.Repositories;
-using API.Users;
+using API.GraphQL.Mutation;
+using API.GraphQL.Query;
 using API.Veiculos;
 using HotChocolate.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
+// sql
+using Microsoft.EntityFrameworkCore;
+using API.Context;
+
 var builder = WebApplication.CreateBuilder(args);
 
+// sql
+builder.Services.AddDbContext<DEVInCarContext>(options =>    
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ServerConnection")));
+    
 builder.Services.AddControllers();
 
 // carrego os repositories
@@ -31,12 +40,14 @@ builder.Services
         .AddTypeExtension<VeiculosQueries>()
         .AddTypeExtension<OfertasQueries>()
         .AddTypeExtension<UsersQueries>()
+        .AddTypeExtension<AlimentoQuery>()
 
     // adiciono as mutations
     .AddMutationType()
         .AddTypeExtension<VeiculosMutation>()
         .AddTypeExtension<OfertasMutation>()
         .AddTypeExtension<AuthMutation>()
+        .AddTypeExtension<CarsMutation>()
 
     // adiciono as subscriptions
     .AddSubscriptionType()
@@ -61,7 +72,9 @@ builder.Services
             ValidateAudience = true,
             ValidateIssuerSigningKey = true,
             ValidAudience = builder.Configuration.GetSection("TokenSettings").GetValue<string>("Audience"),
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration.GetSection("TokenSettings").GetValue<string>("Key"))),
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(builder.Configuration.GetSection("TokenSettings").GetValue<string>("Key"))
+            ),
         };
     });
 
@@ -85,6 +98,7 @@ app.UseHttpsRedirection();
 app.UseRouting();
 // suporte ao websockets
 app.UseWebSockets();
+
 // utilizando autenticação e autorização
 app.UseAuthentication();
 app.UseAuthorization();

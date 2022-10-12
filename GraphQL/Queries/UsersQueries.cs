@@ -4,7 +4,7 @@ using HotChocolate.Types;
 using API.Repositories;
 using API.Models;
 
-namespace API.Users 
+namespace API.GraphQL.Query
 {
     [ExtendObjectType(OperationTypeNames.Query)]
     public class UsersQueries
