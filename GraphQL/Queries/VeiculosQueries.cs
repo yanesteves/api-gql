@@ -1,8 +1,7 @@
 using API.Repositories;
 using HotChocolate.AspNetCore.Authorization;
-// using System.Security.Claims;
-
-namespace API.Veiculos 
+using API.Veiculos;
+namespace API.GraphQL.Query
 {    
     [ExtendObjectType(OperationTypeNames.Query)]    
     public class VeiculosQueries
