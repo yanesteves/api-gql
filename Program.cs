@@ -34,6 +34,7 @@ builder.Services
 builder.Services
     .AddGraphQLServer()
     .AddAuthorization()
+    .AddErrorFilter<GraphQLErrorFilter>()
 
     // adiciono as query
     .AddQueryType()

@@ -8,9 +8,10 @@ using API.Models;
 
 namespace API.GraphQL.Mutation
 {
-    public class AlimentoInput {
-        public string Nome{get;set;}
-        public int TipoID {get;set;}   
+    public class AlimentoInput
+    {
+        public string Nome { get; set; }
+        public int TipoID { get; set; }
     }
 
     [ExtendObjectType(OperationTypeNames.Mutation)]
@@ -18,9 +19,17 @@ namespace API.GraphQL.Mutation
     {
         public async Task<bool> CreateAlimentoAsync([Service] DEVInCarContext context, AlimentoInput input)
         {
-            context.Alimentos.Add(new Alimento() { Nome = input.Nome, TipoID = input.TipoID });
-            await context.SaveChangesAsync();
-            return true;
+            try
+            {
+
+                context.Alimentos.Add(new Alimento() { Nome = input.Nome, TipoID = input.TipoID });
+                await context.SaveChangesAsync();
+                return true;
+            }
+            catch (System.Exception)
+            {
+                throw new Exception("Não foi possível salvar o alimento.");
+            }
         }
     }
 }
