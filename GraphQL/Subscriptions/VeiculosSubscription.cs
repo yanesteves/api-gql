@@ -1,4 +1,6 @@
+using API.GraphQL.Outputs;
 using HotChocolate;
+using HotChocolate.AspNetCore.Authorization;
 using HotChocolate.Data;
 using HotChocolate.Types;
 namespace API.Veiculos
@@ -7,9 +9,11 @@ namespace API.Veiculos
     public class VeiculosSubscription
     {
         [Subscribe]
-        public Veiculo VeiculoAdicionado([EventMessage]Veiculo message) => message;
+        // Altero o tipo de retorno para não conflitar o Authorize das propriedades de veículo.
+        // Para a subscription, considerarei que os usuários ativos como autenticados, pela configuração definida no middleware de autenticação.
+        public VeiculoViewModel VeiculoAdicionado([EventMessage] VeiculoViewModel message) => message;
 
         [Subscribe]
-        public Veiculo TipoVeiculoAdicionado([Topic]TipoVeiculo tipo, [EventMessage]Veiculo message) => message;
+        public Veiculo TipoVeiculoAdicionado([Topic] TipoVeiculo tipo, [EventMessage] Veiculo message) => message;
     }
 }

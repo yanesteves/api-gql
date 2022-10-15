@@ -1,3 +1,5 @@
+using HotChocolate.AspNetCore.Authorization;
+
 namespace API.Veiculos 
 {
     public class Veiculo : IVeiculo 
@@ -11,6 +13,7 @@ namespace API.Veiculos
             Tipo = tipo;
         }
 
+        [Authorize]
         public int Id {get;}
         public string Nome {get;}
         public string Dono {get;}

@@ -14,6 +14,7 @@ using Microsoft.IdentityModel.Tokens;
 // sql
 using Microsoft.EntityFrameworkCore;
 using API.Context;
+using API.GraphQL.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -57,7 +58,14 @@ builder.Services
 
     // dou suporte ao pub/sub da subscription
     .AddInMemorySubscriptions()
-    .AddApolloTracing();
+    .AddApolloTracing()
+    
+    // Adiciono um middleware para lidar com as conexões ao websocket
+    // neste middleware, capturo o jwt enviado nos parametros do protocolo wss
+    // caso o jwt não seja válido, a conexão não será aceita pelo servidor.
+    .AddSocketSessionInterceptor<SubscriptionAuthMiddleware>();
+
+builder.Services.AddHttpContextAccessor();
 
 // configuro o jwt e authorization
 builder.Services.Configure<TokenSettings>(builder.Configuration.GetSection("TokenSettings"));
@@ -97,8 +105,14 @@ if (app.Environment.IsDevelopment())
 app.UseCors("CorsPolicy");
 app.UseHttpsRedirection();
 app.UseRouting();
+
 // suporte ao websockets
-app.UseWebSockets();
+app.UseWebSockets(new WebSocketOptions() {
+    // Mantenho as conexões ativas no websocket por 10s, ou seja,
+    // a cada 10s será atualizada a conexão.
+    // Esse tempo pode ser acrescentado para que não tenha muitas reconexões.
+    KeepAliveInterval = TimeSpan.FromSeconds(10)
+});
 
 // utilizando autenticação e autorização
 app.UseAuthentication();
