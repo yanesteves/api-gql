@@ -1,4 +1,4 @@
-using API.GraphQL.Outputs;
+using API.GraphQL.Models;
 using HotChocolate;
 using HotChocolate.AspNetCore.Authorization;
 using HotChocolate.Data;

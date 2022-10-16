@@ -41,6 +41,7 @@ namespace API.GraphQL.Middlewares
             return true;
         }
     }
+    
     public class SubscriptionAuthMiddleware : ISocketSessionInterceptor
     {
         public async ValueTask OnCloseAsync(ISocketConnection connection, CancellationToken cancellationToken) { }
@@ -62,7 +63,7 @@ namespace API.GraphQL.Middlewares
                 var token = jwtHeader.Replace("Bearer ", "");
                 
                 var response = ValidateJWT.ValidateToken(token);
-                
+                Console.WriteLine($"Pode se conectar: {response}");
                 if (!response) {
                     return ConnectionStatus.Reject("Sem autorização para se conectar ao websocket.");
                 }

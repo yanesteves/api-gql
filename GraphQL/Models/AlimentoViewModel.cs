@@ -1,4 +1,4 @@
-namespace API.GraphQL.Outputs
+namespace API.GraphQL.Models
 {
     public class AlimentoViewModel 
     {

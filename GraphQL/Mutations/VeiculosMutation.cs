@@ -4,7 +4,7 @@ using HotChocolate.Types;
 using API.Repositories;
 using HotChocolate.Subscriptions;
 using HotChocolate.AspNetCore.Authorization;
-using API.GraphQL.Outputs;
+using API.GraphQL.Models;
 namespace API.Veiculos
 {    
     [ExtendObjectType(OperationTypeNames.Mutation)]
@@ -14,27 +14,14 @@ namespace API.Veiculos
             Veiculo input, [Service] IVeiculoRepository repository,            
             [Service]ITopicEventSender eventSender)
         {
-            var veiculo = new Veiculo(input.Id, input.Nome, input.Dono, input.Cor, input.Preco, input.Tipo);
-            repository.AddVeiculo(veiculo);
+            repository.AddVeiculo(input);
             
+            var veiculoModel = new VeiculoViewModel(input);
             // Topico , Mensagem
-            // await eventSender.SendAsync(veiculo.Tipo, veiculo);
-
-            var veiculoModel = new VeiculoViewModel(veiculo);
+            // await eventSender.SendAsync(veiculoModel.Tipo, veiculoModel);
             await eventSender.SendAsync(nameof(VeiculosSubscription.VeiculoAdicionado), veiculoModel).ConfigureAwait(false);
             
             return input;
         }
-
-        // public Veiculo CreateVeiculo(
-        //     Veiculo input,
-        //     [Service] IVeiculoRepository repository)
-        // {
-        //     var veiculo = new Veiculo(input.Id, input.Nome, input.Dono, input.Cor, input.Preco);
-        //     repository.AddVeiculo(veiculo);
-
-        //     return input;
-
-        // }
     }
 }

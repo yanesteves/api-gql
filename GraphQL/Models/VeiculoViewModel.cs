@@ -1,6 +1,6 @@
 using API.Veiculos;
 
-namespace API.GraphQL.Outputs
+namespace API.GraphQL.Models
 {
     public class VeiculoViewModel : IVeiculo
     {
